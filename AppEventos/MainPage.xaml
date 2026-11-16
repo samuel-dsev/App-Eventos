@@ -1,0 +1,59 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:AppEventos.Models"
+             x:Class="AppEventos.MainPage"
+             x:DataType="models:Evento"
+             BackgroundColor="{StaticResource Fundo}"
+             NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="18,24" MaximumWidthRequest="612" Spacing="16">
+            <VerticalStackLayout Spacing="3">
+                <Label Text="Cadastro de evento" Style="{StaticResource Titulo}" />
+                <Label Text="Preencha os dados para conferir a duração e o custo total."
+                       TextColor="{StaticResource TextoSecundario}" FontSize="14" />
+            </VerticalStackLayout>
+
+            <Border Style="{StaticResource Cartao}">
+                <VerticalStackLayout Spacing="13">
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Nome do evento" Style="{StaticResource Legenda}" />
+                        <Entry Text="{Binding Nome, Mode=TwoWay}" Placeholder="Ex. Feira de Tecnologia"
+                               MaxLength="100" AutomationId="NomeEvento" SemanticProperties.Description="Nome do evento" />
+                    </VerticalStackLayout>
+                    <VerticalStackLayout Spacing="4">
+                        <Label Text="Local do evento" Style="{StaticResource Legenda}" />
+                        <Entry Text="{Binding Local, Mode=TwoWay}" Placeholder="Ex. Auditório da ETEC"
+                               MaxLength="140" AutomationId="LocalEvento" SemanticProperties.Description="Local do evento" />
+                    </VerticalStackLayout>
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Data de início" Style="{StaticResource Legenda}" />
+                            <DatePicker Date="{Binding DataInicio, Mode=TwoWay}"
+                                        AutomationId="DataInicio" SemanticProperties.Description="Data de início" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Spacing="4">
+                            <Label Text="Data de término" Style="{StaticResource Legenda}" />
+                            <DatePicker Date="{Binding DataTermino, Mode=TwoWay}"
+                                        AutomationId="DataTermino" SemanticProperties.Description="Data de término" />
+                        </VerticalStackLayout>
+                    </Grid>
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                        <VerticalStackLayout Spacing="4">
+                            <Label Text="Nº de participantes" Style="{StaticResource Legenda}" />
+                            <Entry Text="{Binding ParticipantesInformados, Mode=TwoWay}" Placeholder="Ex. 40"
+                                   Keyboard="Numeric" AutomationId="Participantes" SemanticProperties.Description="Número de participantes" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Spacing="4">
+                            <Label Text="Custo por participante (R$)" Style="{StaticResource Legenda}" />
+                            <Entry Text="{Binding CustoInformado, Mode=TwoWay}" Placeholder="Ex. 35,50"
+                                   Keyboard="Numeric" AutomationId="CustoParticipante" SemanticProperties.Description="Custo por participante em reais" />
+                        </VerticalStackLayout>
+                    </Grid>
+                    <Label x:Name="Erro" TextColor="#A32333" FontSize="13" IsVisible="False" />
+                    <Button x:Name="BotaoResumo" Text="Ver resumo" Clicked="VerResumo" AutomationId="VerResumo" />
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

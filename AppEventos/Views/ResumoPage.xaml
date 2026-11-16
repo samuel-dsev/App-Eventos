@@ -1,0 +1,57 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:AppEventos.Models"
+             x:Class="AppEventos.Views.ResumoPage"
+             x:DataType="models:Evento"
+             BackgroundColor="{StaticResource Fundo}"
+             NavigationPage.HasNavigationBar="False">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="18,24" MaximumWidthRequest="612" Spacing="16">
+            <Label Text="Resumo do evento" Style="{StaticResource Titulo}" />
+
+            <Border Style="{StaticResource Cartao}">
+                <VerticalStackLayout Spacing="13">
+                    <VerticalStackLayout Spacing="2">
+                        <Label Text="{Binding Nome}" FontFamily="AppSemibold" FontSize="23"
+                               SemanticProperties.HeadingLevel="Level2" />
+                        <Label Text="{Binding Local, StringFormat='Local: {0}'}" TextColor="{StaticResource TextoSecundario}" />
+                    </VerticalStackLayout>
+                    <BoxView Color="{StaticResource Borda}" HeightRequest="1" />
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="12" RowDefinitions="Auto,Auto,Auto" RowSpacing="10">
+                        <VerticalStackLayout Spacing="2">
+                            <Label Text="Data de início" Style="{StaticResource Legenda}" />
+                            <Label Text="{Binding DataInicio, StringFormat='{0:dd/MM/yyyy}'}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Column="1" Spacing="2">
+                            <Label Text="Data de término" Style="{StaticResource Legenda}" />
+                            <Label Text="{Binding DataTermino, StringFormat='{0:dd/MM/yyyy}'}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Row="1" Spacing="2">
+                            <Label Text="Duração" Style="{StaticResource Legenda}" />
+                            <Label Text="{Binding DuracaoFormatada}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Row="1" Grid.Column="1" Spacing="2">
+                            <Label Text="Participantes" Style="{StaticResource Legenda}" />
+                            <Label Text="{Binding NumeroParticipantes, StringFormat='{0:N0}'}" />
+                        </VerticalStackLayout>
+                        <VerticalStackLayout Grid.Row="2" Grid.ColumnSpan="2" Spacing="2">
+                            <Label Text="Custo por participante" Style="{StaticResource Legenda}" />
+                            <Label Text="{Binding CustoPorParticipante, StringFormat='{0:C2}'}" />
+                        </VerticalStackLayout>
+                    </Grid>
+                    <Border BackgroundColor="#E9F0FF" StrokeThickness="0"
+                            StrokeShape="RoundRectangle 10" Padding="14,9">
+                        <VerticalStackLayout Spacing="1">
+                            <Label Text="Custo total do evento" Style="{StaticResource Legenda}" />
+                            <Label Text="{Binding CustoTotal, StringFormat='{0:C2}'}" FontSize="25"
+                                   FontFamily="AppSemibold" TextColor="{StaticResource Azul}" />
+                        </VerticalStackLayout>
+                    </Border>
+                    <Button x:Name="BotaoEditar" Text="Editar cadastro" Clicked="EditarCadastro"
+                            AutomationId="EditarCadastro" BackgroundColor="#E9F0FF" TextColor="{StaticResource Azul}" />
+                </VerticalStackLayout>
+            </Border>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
